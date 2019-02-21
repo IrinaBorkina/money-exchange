@@ -3,6 +3,12 @@ module.exports = function makeExchange(currency) {
     let money = {};
     let H, Q, D, N, P;
 
+    if (currency <= 0) {
+        return money;
+    } else if (currency > 10000) {
+        return money = {error: "You are rich, my friend! We don't have so much coins for exchange"};
+    }
+
     H = Math.floor(currency / 50);
     let cash = currency % 50;
     if (H > 0) money.H = H;
@@ -21,10 +27,5 @@ module.exports = function makeExchange(currency) {
     P = cash % 5;
     if (P > 0) money.P = P;
 
-    if (currency <= 0) {
-        return money;
-    } else if (currency > 10000) {
-        return money = {error: "You are rich, my friend! We don't have so much coins for exchange"};
-    }
         return money;
 }
